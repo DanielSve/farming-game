@@ -51,7 +51,7 @@ const Acre = ({ index, crops, setCrops, allCrops, turnDone, results, setPlayer, 
             <option value={-1}>Choose Crop</option>
           {allCrops.map((crop, index2) => (
             <option key={index2} value={`${index2}`}>
-              {crop.name} (Cost {crop.cost}) Index {index2}
+              {crop.name} (Cost {crop.cost}) 
             </option>
           ))}
         </select>
