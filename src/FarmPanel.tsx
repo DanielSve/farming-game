@@ -19,91 +19,79 @@ const FarmPanel = ({ player, setPlayer }: Props) => {
 
   const [crops, setCrops] = useState<Crop[]>([
     {
-      id: 0,
       name: '',
       cost: 0,
       color: '',
     },
     {
-      id: 1,
       name: '',
       cost: 0,
       color: '',
     },
     {
-      id: 2,
       name: '',
       cost: 0,
       color: '',
     },
   ]);
 
-  console.log("results");
-  
-  console.log(results);
-  
-
-  const [crop, setCrop] = useState<string>('');
-
   const handleTurn = () => {
-    setTurnDone(!turnDone);
-    const temp: number[] = [Math.floor(Math.random() * 4), Math.floor(Math.random() * 4), Math.floor(Math.random() * 4)]
-    console.log("temp");
-    console.log(temp);
-    
+    const temp: number[] = [
+      Math.floor(Math.random() * 4),
+      Math.floor(Math.random() * 4),
+      Math.floor(Math.random() * 4),
+    ];
 
-    
     setResults(
       results.map((result, i) => ({
         ...result,
         nr: temp[i],
-        yield: temp[i] * crops[i].cost
+        yield: temp[i] * crops[i].cost,
       }))
     );
 
-    
-    
+    setCrops([
+      {
+        name: '',
+        cost: 0,
+        color: '',
+      },
+      {
+        name: '',
+        cost: 0,
+        color: '',
+      },
+      {
+        name: '',
+        cost: 0,
+        color: '',
+      },
+    ]);
+    setTurnDone(!turnDone);
   };
 
-  useEffect(()=> {
+  useEffect(() => {
     setPlayer({
       ...player,
       year: player.year + 1,
       balance:
         player.balance + results.map((r) => r.yield).reduce((a, s) => a + s),
     });
-  },[results])
+  }, [results]);
 
-  const handleReset = () => {
-  
-  }
-
-  console.log("crops");
-  
-  console.log(crops);
-  
-
-  console.log('results');
-
-  console.log(results);
-
-  
 
   const [allCrops, setAllCrops] = useState<Crop[]>([
     {
-      id: 0,
       name: 'Carrots',
       cost: 400,
       color: 'rgb(216, 144, 10)',
     },
     {
-      id: 1,
       name: 'Wheat',
       cost: 500,
       color: 'yellow',
     },
     {
-      id: 2,
       name: 'Potatoes',
       cost: 300,
       color: 'beige',

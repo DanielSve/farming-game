@@ -6,7 +6,6 @@ export interface Player {
 }
 
 export interface Crop {
-    id: number,
     name: string,
     cost: number,
     color: string
