@@ -17,23 +17,14 @@ const FarmPanel = ({ player, setPlayer }: Props) => {
     { nr: 0, yield: 0 },
   ]);
 
-  const [crops, setCrops] = useState<Crop[]>([
-    {
-      name: '',
-      cost: 0,
-      color: '',
-    },
-    {
-      name: '',
-      cost: 0,
-      color: '',
-    },
-    {
-      name: '',
-      cost: 0,
-      color: '',
-    },
-  ]);
+  let cropsInit: any = [{}, {}, {}];
+  cropsInit = cropsInit.map(() => ({
+    name: '',
+    cost: 0,
+    color: '',
+  }));
+
+  const [crops, setCrops] = useState<Crop[]>(cropsInit);
 
   const handleTurn = () => {
     const temp: number[] = [
@@ -50,23 +41,7 @@ const FarmPanel = ({ player, setPlayer }: Props) => {
       }))
     );
 
-    setCrops([
-      {
-        name: '',
-        cost: 0,
-        color: '',
-      },
-      {
-        name: '',
-        cost: 0,
-        color: '',
-      },
-      {
-        name: '',
-        cost: 0,
-        color: '',
-      },
-    ]);
+    setCrops(cropsInit);
     setTurnDone(!turnDone);
   };
 
@@ -78,7 +53,6 @@ const FarmPanel = ({ player, setPlayer }: Props) => {
         player.balance + results.map((r) => r.yield).reduce((a, s) => a + s),
     });
   }, [results]);
-
 
   const [allCrops, setAllCrops] = useState<Crop[]>([
     {
